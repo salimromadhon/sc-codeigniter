@@ -16,6 +16,18 @@ class Migration_Add_mahasiswa extends CI_Migration {
 				'type' => 'VARCHAR',
 				'constraint' => '100',
 			),
+			'nim' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+			),
+			'email' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+			),
+			'jurusan' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+			),
 		));
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mahasiswa');

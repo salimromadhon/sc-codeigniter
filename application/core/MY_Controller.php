@@ -8,5 +8,10 @@ class MY_Controller extends CI_Controller
     {
 		parent::__construct();
 	}
+	
+	public function get_or_fail($data)
+	{
+		return $data ? $data : show_404();
+	}
 
 }

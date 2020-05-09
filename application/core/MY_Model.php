@@ -17,7 +17,26 @@ class MY_Model extends CI_Model {
 	
 	public function get($id)
 	{
-		return $this->db->get_where($this->table, array('id' => $id), 1);
+		return $this->db->get_where($this->table, array('id' => $id), 1)->row();
+	}
+	
+	public function insert($data)
+	{
+		if (isset($data[0]) && is_array($data[0])) {
+			return $this->db->insert_batch($this->table, $data);
+		}
+		
+		return $this->db->insert($this->table, $data);
+	}
+	
+	public function update($id, $data)
+	{
+		return $this->db->where('id', $id)->update($this->table, $data);
+	}
+	
+	public function delete($id)
+	{
+		return $this->db->where('id', $id)->delete($this->table);
 	}
 
 }
