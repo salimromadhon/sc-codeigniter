@@ -29,7 +29,7 @@
 					<div class="btn-group btn-group-sm" role="group">
 					  <a href="<?= base_url('mahasiswa/show/' . $item->id) ?>" class="btn btn-outline-secondary">Lihat</a>
 					  <a href="<?= base_url('mahasiswa/edit/' . $item->id) ?>" class="btn btn-outline-secondary">Sunting</a>
-					  <a href="<?= base_url('mahasiswa/delete/' . $item->id) ?>" class="btn btn-outline-secondary">Hapus</a>
+					  <a href="#" data-href="<?= base_url('mahasiswa/delete/' . $item->id) ?>" class="btn btn-outline-secondary delete-mahasiswa">Hapus</a>
 					</div>
 				</div>
 			</li>

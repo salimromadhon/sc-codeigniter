@@ -55,6 +55,7 @@ class Mahasiswa extends MY_Controller
 	public function delete($id)
 	{
 		$this->Mahasiswa->delete($id);
+		alert('alert', 'Sukses menghapus mahasiswa', 'success');
 		
 		return redirect('mahasiswa');
 	}
@@ -74,10 +75,10 @@ class Mahasiswa extends MY_Controller
 		
 		if ($id = $this->input->post('id', TRUE)) {
 			$this->Mahasiswa->update($id, $data);
-			alert('mahasiswa', 'Sukses memperbarui data.', 'success');
+			alert('mahasiswa', 'Sukses memperbarui mahasiswa.', 'success');
 		} else {
 			$this->Mahasiswa->insert($data);
-			alert('mahasiswa', 'Sukses menyimpan data.', 'success');
+			alert('mahasiswa', 'Sukses menyimpan mahasiswa.', 'success');
 		}
 		
 		return redirect('mahasiswa');
