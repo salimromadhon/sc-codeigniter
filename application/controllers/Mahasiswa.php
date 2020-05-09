@@ -22,13 +22,15 @@ class Mahasiswa extends MY_Controller
 
 	public function create()
 	{
+		$data['title'] = 'Tambah Mahasiswa';
 		$this->store();
 		
-		return $this->load->view('mahasiswa/create');
+		return $this->load->view('mahasiswa/create', $data);
 	}
 
 	public function edit($id)
 	{
+		$data['title'] = 'Sunting Mahasiswa';
 		$data['mahasiswa'] = $this->get_or_fail($this->Mahasiswa->get($id));
 		$this->store();
 		
@@ -57,10 +59,10 @@ class Mahasiswa extends MY_Controller
 		
 		if ($id = $this->input->post('id', true)) {
 			$this->Mahasiswa->update($id, $data);
-			$this->session->flashdata('alert', 'Sukses memperbarui data.');
+			alert('mahasiswa', 'Sukses memperbarui data.', 'success');
 		} else {
 			$this->Mahasiswa->insert($data);
-			$this->session->flashdata('alert', 'Sukses menyimpan data.');
+			alert('mahasiswa', 'Sukses menyimpan data.', 'success');
 		}
 		
 		return redirect('mahasiswa');

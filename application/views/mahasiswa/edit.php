@@ -18,10 +18,16 @@
 		  <label for="email">Email</label>
 		  <input name="email" type="email" class="form-control" id="email" value="<?= $mahasiswa->email ?>">
 	    </div>
-	    <div class="form-group">
+		<div class="form-group">
 		  <label for="jurusan">Jurusan</label>
-          <input name="jurusan" type="text" class="form-control" id="jurusan" value="<?= $mahasiswa->jurusan ?>">
-	    </div>
+		  <select name="jurusan" class="form-control" id="jurusan">
+		    <option value="Komputer" <?= $mahasiswa->jurusan === 'Komputer' ? 'selected' : '' ?>>Komputer</option>
+		    <option value="Akuntansi" <?= $mahasiswa->jurusan === 'Akuntansi' ? 'selected' : '' ?>>Akuntansi</option>
+		    <option value="Geografi" <?= $mahasiswa->jurusan === 'Geografi' ? 'selected' : '' ?>>Geografi</option>
+		    <option value="Fisika" <?= $mahasiswa->jurusan === 'Fisika' ? 'selected' : '' ?>>Fisika</option>
+		    <option value="Kimia" <?= $mahasiswa->jurusan === 'Kimia' ? 'selected' : '' ?>>Kimia</option>
+		  </select>
+		</div>
 		<input name="id" type="hidden" value="<?= $mahasiswa->id ?>">
 	    <button type="submit" class="btn btn-primary">Simpan</button>
 	  </form>

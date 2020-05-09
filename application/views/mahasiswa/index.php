@@ -7,6 +7,7 @@
 	  <div class="my-3">
 	    <a href="<?= base_url('mahasiswa/create') ?>" class="btn btn-primary">Tambah</a>
 	  </div>
+	  <?= alert('mahasiswa') ?>
 	  <?php if ($mahasiswa) : ?>
 	    <ul class="list-group">
 		  <?php foreach ($mahasiswa as $key => $item) : ?>

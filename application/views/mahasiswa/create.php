@@ -18,10 +18,17 @@
 		  <label for="email">Email</label>
 		  <input name="email" type="email" class="form-control" id="email" value="<?= set_value('email') ?>">
 	    </div>
-	    <div class="form-group">
+		<div class="form-group">
 		  <label for="jurusan">Jurusan</label>
-          <input name="jurusan" type="text" class="form-control" id="jurusan" value="<?= set_value('jurusan') ?>">
-	    </div>
+		  <select name="jurusan" class="form-control" id="jurusan">
+			<option></option>
+		    <option value="Komputer" <?= set_select('jurusan', 'Komputer') ?>>Komputer</option>
+		    <option value="Akuntansi" <?= set_select('jurusan', 'Akuntansi') ?>>Akuntansi</option>
+		    <option value="Geografi" <?= set_select('jurusan', 'Geografi') ?>>Geografi</option>
+		    <option value="Fisika" <?= set_select('jurusan', 'Fisika') ?>>Fisika</option>
+		    <option value="Kimia" <?= set_select('jurusan', 'Kimia') ?>>Kimia</option>
+		  </select>
+		</div>
 	    <button type="submit" class="btn btn-primary">Simpan</button>
 	  </form>
 	</div>
