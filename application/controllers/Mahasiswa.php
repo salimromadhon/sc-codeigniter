@@ -25,7 +25,7 @@ class Mahasiswa extends MY_Controller
 		return $this->load->view('mahasiswa/index', $data);
 	}
 
-	public function show($id)
+	public function show($id = 0)
 	{
 		$data['title'] = 'Detail Mahasiswa';
 		$data['mahasiswa'] = $this->get_or_fail($this->Mahasiswa->get($id));
@@ -42,7 +42,7 @@ class Mahasiswa extends MY_Controller
 		return $this->load->view('mahasiswa/create', $data);
 	}
 
-	public function edit($id)
+	public function edit($id = 0)
 	{
 		$data['title'] = 'Sunting Mahasiswa';
 		$data['mahasiswa'] = $this->get_or_fail($this->Mahasiswa->get($id));
@@ -52,7 +52,7 @@ class Mahasiswa extends MY_Controller
 		return $this->load->view('mahasiswa/edit', $data);
 	}
 	
-	public function delete($id)
+	public function delete($id = 0)
 	{
 		$this->Mahasiswa->delete($id);
 		alert('alert', 'Sukses menghapus mahasiswa', 'success');
