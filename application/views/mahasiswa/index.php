@@ -5,9 +5,9 @@
     <div class="col-md-6">
 	  <h1>Daftar Mahasiswa</h1>
 	  <div class="d-flex justify-content-between align-middle my-3">
-			<form method="post">
+			<form action="<?= base_url('mahasiswa') ?>" method="get">
 			  <div class="input-group">
-				<input name="keyword" type="text" class="form-control" placeholder="Cari…" aria-label="Cari…" value="<?= set_value('keyword') ?>">
+				<input name="keyword" type="text" class="form-control" placeholder="Cari…" aria-label="Cari…" value="<?= $keyword ?>">
 				<div class="input-group-append">
 				  <div class="btn-group" role="group">
 					<a href="<?= base_url('mahasiswa') ?>" class="btn btn-outline-secondary rounded-0">×</a>
@@ -19,9 +19,10 @@
 			<a href="<?= base_url('mahasiswa/create') ?>" class="btn btn-primary">Tambah</a>
 	  </div>
 	  <?= alert('mahasiswa') ?>
-	  <?php if ($mahasiswa) : ?>
+	  <?php if ($mahasiswa['result']) : ?>
+		<p>Terdapat <?= $mahasiswa['count'] ?> mahasiswa.</p>
 	    <ul class="list-group">
-		  <?php foreach ($mahasiswa as $key => $item) : ?>
+		  <?php foreach ($mahasiswa['result'] as $key => $item) : ?>
 	        <li class="list-group-item">
 				<div class="d-flex justify-content-between align-items-center">
 					<strong><?= $item->nama ?></strong>
@@ -34,6 +35,13 @@
 			</li>
 	      <?php endforeach ?>
 		</ul>
+		<div class="mt-3">
+		  <?= pagination(array(
+			'base_url' => base_url('mahasiswa/index'),
+			'per_page' => $limit,
+			'total_rows' => $mahasiswa['count'],
+		  )) ?>
+		</div>
 	  <?php else: ?>
 		<div class="alert alert-warning">Tidak ada mahasiswa.</div>
 	  <?php endif ?>

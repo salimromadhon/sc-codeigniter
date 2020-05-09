@@ -10,9 +10,14 @@ class MY_Model extends CI_Model {
 		parent::__construct();
 	}
 	
-	public function all()
+	public function all($limit = NULL, $offset = NULL)
 	{
-		return $this->db->get($this->table)->result();
+		return $this->db->get($this->table, $limit, $offset)->result();
+	}
+
+	public function count()
+	{
+		return $this->db->count_all_results($this->table);
 	}
 	
 	public function get($id)
@@ -39,13 +44,19 @@ class MY_Model extends CI_Model {
 		return $this->db->where('id', $id)->delete($this->table);
 	}
 
-	public function search($keyword, $fields, $limit = NULL)
+	public function search($keyword, $fields, $limit = NULL, $offset = NULL)
 	{
+		$this->db->start_cache();
 		foreach ($fields as $field) {
 			$this->db->or_like($field, $keyword);
 		}
+		$this->db->stop_cache();
 
-		return $this->db->limit($limit)->get($this->table)->result();
+		$result = $this->db->limit($limit)->get($this->table, $limit, $offset)->result();
+		$count = $this->db->count_all_results($this->table);
+		$this->db->flush_cache();
+		
+		return compact('result', 'count');
 	}
 
 }

@@ -12,14 +12,15 @@ class Mahasiswa extends MY_Controller
 		$this->load->library('form_validation');
 	}
 
-    public function index()
+    public function index($offset = 0)
 	{
 		$data['title'] = 'Daftar Mahasiswa';
-		$data['keyword'] = $this->input->post('keyword');
+		$data['keyword'] = $this->input->get('keyword', TRUE);
+		$data['limit'] = 5;
 		$data['mahasiswa'] = $this->Mahasiswa->search($data['keyword'], array(
 			'nama',
 			'jurusan',
-		));
+		), $data['limit'], $offset);
 		
 		return $this->load->view('mahasiswa/index', $data);
 	}
@@ -65,13 +66,13 @@ class Mahasiswa extends MY_Controller
 		}
 		
 		$data = array(
-			'nama' => $this->input->post('nama', true),
-			'nim' => $this->input->post('nim', true),
-			'email' => $this->input->post('email', true),
-			'jurusan' => $this->input->post('jurusan', true),
+			'nama' => $this->input->post('nama', TRUE),
+			'nim' => $this->input->post('nim', TRUE),
+			'email' => $this->input->post('email', TRUE),
+			'jurusan' => $this->input->post('jurusan', TRUE),
 		);
 		
-		if ($id = $this->input->post('id', true)) {
+		if ($id = $this->input->post('id', TRUE)) {
 			$this->Mahasiswa->update($id, $data);
 			alert('mahasiswa', 'Sukses memperbarui data.', 'success');
 		} else {
