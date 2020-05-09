@@ -22,11 +22,9 @@
 		  <label for="jurusan">Jurusan</label>
 		  <select name="jurusan" class="form-control" id="jurusan">
 			<option></option>
-		    <option value="Komputer" <?= set_select('jurusan', 'Komputer') ?>>Komputer</option>
-		    <option value="Akuntansi" <?= set_select('jurusan', 'Akuntansi') ?>>Akuntansi</option>
-		    <option value="Geografi" <?= set_select('jurusan', 'Geografi') ?>>Geografi</option>
-		    <option value="Fisika" <?= set_select('jurusan', 'Fisika') ?>>Fisika</option>
-		    <option value="Kimia" <?= set_select('jurusan', 'Kimia') ?>>Kimia</option>
+			<?php foreach ($jurusan as $item) : ?>
+			  <option value="<?= $item ?>" <?= set_select('jurusan', $item) ?>><?= $item ?></option>
+			<?php endforeach ?>
 		  </select>
 		</div>
 	    <button type="submit" class="btn btn-primary">Simpan</button>

@@ -21,11 +21,9 @@
 		<div class="form-group">
 		  <label for="jurusan">Jurusan</label>
 		  <select name="jurusan" class="form-control" id="jurusan">
-		    <option value="Komputer" <?= $mahasiswa->jurusan === 'Komputer' ? 'selected' : '' ?>>Komputer</option>
-		    <option value="Akuntansi" <?= $mahasiswa->jurusan === 'Akuntansi' ? 'selected' : '' ?>>Akuntansi</option>
-		    <option value="Geografi" <?= $mahasiswa->jurusan === 'Geografi' ? 'selected' : '' ?>>Geografi</option>
-		    <option value="Fisika" <?= $mahasiswa->jurusan === 'Fisika' ? 'selected' : '' ?>>Fisika</option>
-		    <option value="Kimia" <?= $mahasiswa->jurusan === 'Kimia' ? 'selected' : '' ?>>Kimia</option>
+		    <?php foreach ($jurusan as $item) : ?>
+			  <option value="<?= $item ?>" <?= $mahasiswa->jurusan === $item ? 'selected' : '' ?>><?= $item ?></option>
+			<?php endforeach ?>
 		  </select>
 		</div>
 		<input name="id" type="hidden" value="<?= $mahasiswa->id ?>">

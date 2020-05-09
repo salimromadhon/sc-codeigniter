@@ -39,4 +39,13 @@ class MY_Model extends CI_Model {
 		return $this->db->where('id', $id)->delete($this->table);
 	}
 
+	public function search($keyword, $fields, $limit = NULL)
+	{
+		foreach ($fields as $field) {
+			$this->db->or_like($field, $keyword);
+		}
+
+		return $this->db->limit($limit)->get($this->table)->result();
+	}
+
 }

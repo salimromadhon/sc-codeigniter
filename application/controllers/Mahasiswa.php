@@ -15,14 +15,27 @@ class Mahasiswa extends MY_Controller
     public function index()
 	{
 		$data['title'] = 'Daftar Mahasiswa';
-		$data['mahasiswa'] = $this->Mahasiswa->all();
+		$data['keyword'] = $this->input->post('keyword');
+		$data['mahasiswa'] = $this->Mahasiswa->search($data['keyword'], array(
+			'nama',
+			'jurusan',
+		));
 		
 		return $this->load->view('mahasiswa/index', $data);
+	}
+
+	public function show($id)
+	{
+		$data['title'] = 'Detail Mahasiswa';
+		$data['mahasiswa'] = $this->get_or_fail($this->Mahasiswa->get($id));
+		
+		return $this->load->view('mahasiswa/show', $data);
 	}
 
 	public function create()
 	{
 		$data['title'] = 'Tambah Mahasiswa';
+		$data['jurusan'] = $this->Mahasiswa->get_all_jurusan();
 		$this->store();
 		
 		return $this->load->view('mahasiswa/create', $data);
@@ -32,6 +45,7 @@ class Mahasiswa extends MY_Controller
 	{
 		$data['title'] = 'Sunting Mahasiswa';
 		$data['mahasiswa'] = $this->get_or_fail($this->Mahasiswa->get($id));
+		$data['jurusan'] = $this->Mahasiswa->get_all_jurusan();
 		$this->store();
 		
 		return $this->load->view('mahasiswa/edit', $data);
